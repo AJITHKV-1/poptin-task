@@ -56,10 +56,10 @@
                             <input type="text" class="form-control" placeholder="Message" v-model="message">
                         </td>
                     </tr>
-                    <tr>
+                    <tr  v-if="token">
                         <td colspan="5" style="vertical-align:bottom">
                             <h6>Include the follwoing javascript code in your application, inside head tag. </h6>
-                            <div class="scriptTagDiv" v-if="token">&lt;script src="http://127.0.0.1:8000/js/script.js?token={{token}}"&gt;&lt;/script&gt;</div>
+                            <div class="scriptTagDiv">&lt;script src="http://ec2-3-83-46-88.compute-1.amazonaws.com/poptin-task/public/js/script.js?token={{token}}"&gt;&lt;/script&gt;</div>
                         </td>
                     </tr>
                 </tbody>
@@ -128,7 +128,7 @@ export default {
             'rows' : this.rows,
             'message' : this.message
         });
-        axios.post('/ruleSubmission',data).then(response => {
+        axios.post('/poptin-task/public/ruleSubmission',data).then(response => {
         setTimeout(() => {
             this.$toast.success('Rule added successfully');
             this.loader = false;
@@ -147,7 +147,7 @@ export default {
 
 
     getRules() {
-        axios.get('/getRules').then(response => {
+        axios.get('/poptin-task/public/getRules').then(response => {
           if(response.data.length > 0) {
               this.rows.push.apply(this.rows,response.data);
               this.message = response.data[0]['user']['alert_message'];

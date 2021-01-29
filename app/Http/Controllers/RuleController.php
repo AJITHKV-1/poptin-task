@@ -64,14 +64,5 @@ class RuleController extends Controller
         $user->save();
     }
 
-    /**
-     * Create Rules for the logged in user
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function checkRules(Request $request)
-    {
-        return $request->input();
-    }
-    
+   
 }

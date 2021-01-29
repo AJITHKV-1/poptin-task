@@ -1,5 +1,5 @@
 
-var webUrl = "http://127.0.0.1:8000/checkRules";
+var webUrl = "http://ec2-3-83-46-88.compute-1.amazonaws.com/poptin-task/public/checkRules";
 console.log("webUrl", webUrl);
 const urlParams = new URLSearchParams(
     document.currentScript.getAttribute("src")

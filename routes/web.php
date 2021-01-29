@@ -30,5 +30,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/ruleSubmission', 'RuleController@store');
+
 Route::get('/getRules', 'RuleController@index');
-Route::post('/checkRules','RuleController@checkRules');
+
+Route::post('/checkRules','ScriptController@checkRules');
