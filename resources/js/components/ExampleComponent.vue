@@ -46,7 +46,7 @@
                                 type="button"
                                 @click="deleteRow(index)"
                                 class="btn btn-outline-danger rounded-circle">
-                                <i class="fa fa-times"></i>
+                                <strong>X<strong>
                             </button>
                         </td>
                     </tr>

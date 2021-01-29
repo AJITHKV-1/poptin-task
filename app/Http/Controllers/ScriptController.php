@@ -28,15 +28,15 @@ class ScriptController extends Controller
                     array_push($responses, $rule->show_hide_value);
                 }
             } else if($rule->rule_value === 'startsWith') { 
-                if(substr($rule->domain_value, 0, strlen($pathName)) === $rule->domain_value) {
+                if(substr($pathName, 0, strlen($rule->domain_value)) === $rule->domain_value) {
                     array_push($responses, $rule->show_hide_value);
                 }
             } else if($rule->rule_value === 'endsWith') { 
-                $len = strlen($pathName); 
+                $len = strlen($rule->domain_value); 
                 if ($len == 0) { 
                     return true; 
                 } 
-                if(substr($rule->domain_value, -$len) ===  $rule->domain_value) {
+                if(substr($pathName, -$len) ===  $rule->domain_value) {
                     array_push($responses, $rule->show_hide_value);
                 }
             } else if($rule->rule_value === 'exact') { 
