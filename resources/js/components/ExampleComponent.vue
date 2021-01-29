@@ -90,6 +90,7 @@
 <script>
 import VueBootstrapToasts from "vue-bootstrap-toasts";
 Vue.use(VueBootstrapToasts);
+let BaseUrl = '/poptin-task/public/';
 export default {
     created() {
         this.getRules();
@@ -101,7 +102,7 @@ export default {
                 { 'label': `Don't Show on`, 'value': 'hide'},
             ],
             options2: [
-                { 'label': 'Pages that contain', 'value': 'contains'},
+                { 'label': 'Pages that contains', 'value': 'contains'},
                 { 'label': 'Pages starting with', 'value': 'startsWith'},
                 { 'label': 'Pages ending with', 'value': 'endsWith'},
                 { 'label': 'A Specific page', 'value': 'exact'},
@@ -128,7 +129,8 @@ export default {
             'rows' : this.rows,
             'message' : this.message
         });
-        axios.post('/poptin-task/public/ruleSubmission',data).then(response => {
+        // /poptin-task/public/ruleSubmission
+        axios.post('/ruleSubmission',data).then(response => {
         setTimeout(() => {
             this.$toast.success('Rule added successfully');
             this.loader = false;
@@ -147,7 +149,8 @@ export default {
 
 
     getRules() {
-        axios.get('/poptin-task/public/getRules').then(response => {
+        // /poptin-task/public/getRules
+        axios.get('/getRules').then(response => {
           if(response.data.length > 0) {
               this.rows.push.apply(this.rows,response.data);
               this.message = response.data[0]['user']['alert_message'];

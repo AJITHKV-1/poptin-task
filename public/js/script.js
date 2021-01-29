@@ -93,8 +93,8 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var webUrl = "http://ec2-3-83-46-88.compute-1.amazonaws.com/poptin-task/public/checkRules";
-console.log("webUrl", webUrl);
+// var webUrl = "http://ec2-3-83-46-88.compute-1.amazonaws.com/poptin-task/public/checkRules";
+var webUrl = "http://127.0.0.1:8000/checkRules";
 var urlParams = new URLSearchParams(document.currentScript.getAttribute("src"));
 var token = getParameterByName("token", document.currentScript.getAttribute("src"));
 
@@ -156,7 +156,7 @@ function httpPost(theUrl, data, callback) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\laragon\www\poptin-task\resources\js\script.js */"./resources/js/script.js");
+module.exports = __webpack_require__(/*! K:\laragon\www\poptin-task\resources\js\script.js */"./resources/js/script.js");
 
 
 /***/ })

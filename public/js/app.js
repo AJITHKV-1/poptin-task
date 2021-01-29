@@ -2000,6 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 Vue.use(vue_bootstrap_toasts__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var BaseUrl = '/poptin-task/public/';
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.getRules();
@@ -2014,7 +2015,7 @@ Vue.use(vue_bootstrap_toasts__WEBPACK_IMPORTED_MODULE_0__["default"]);
         'value': 'hide'
       }],
       options2: [{
-        'label': 'Pages that contain',
+        'label': 'Pages that contains',
         'value': 'contains'
       }, {
         'label': 'Pages starting with',
@@ -2052,8 +2053,9 @@ Vue.use(vue_bootstrap_toasts__WEBPACK_IMPORTED_MODULE_0__["default"]);
       data.push({
         'rows': this.rows,
         'message': this.message
-      });
-      axios.post('/poptin-task/public/ruleSubmission', data).then(function (response) {
+      }); // /poptin-task/public/ruleSubmission
+
+      axios.post('/ruleSubmission', data).then(function (response) {
         setTimeout(function () {
           _this.$toast.success('Rule added successfully');
 
@@ -2073,7 +2075,8 @@ Vue.use(vue_bootstrap_toasts__WEBPACK_IMPORTED_MODULE_0__["default"]);
     getRules: function getRules() {
       var _this2 = this;
 
-      axios.get('/poptin-task/public/getRules').then(function (response) {
+      // /poptin-task/public/getRules
+      axios.get('/getRules').then(function (response) {
         if (response.data.length > 0) {
           _this2.rows.push.apply(_this2.rows, response.data);
 
@@ -51678,8 +51681,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\poptin-task\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\poptin-task\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! K:\laragon\www\poptin-task\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! K:\laragon\www\poptin-task\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

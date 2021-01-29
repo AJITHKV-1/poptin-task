@@ -37,4 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the user for this rule.
+     */
+    public function rules()
+    {
+        return $this->hasMany(Rule::class, 'user_id');
+    }
+
 }
