@@ -130,7 +130,7 @@ export default {
             'message' : this.message
         });
         // /poptin-task/public/ruleSubmission
-        axios.post('/ruleSubmission',data).then(response => {
+        axios.post(BaseUrl+'ruleSubmission',data).then(response => {
         setTimeout(() => {
             this.$toast.success('Rule added successfully');
             this.loader = false;
@@ -150,7 +150,7 @@ export default {
 
     getRules() {
         // /poptin-task/public/getRules
-        axios.get('/getRules').then(response => {
+        axios.get(BaseUrl+'getRules').then(response => {
           if(response.data.length > 0) {
               this.rows.push.apply(this.rows,response.data);
               this.message = response.data[0]['user']['alert_message'];

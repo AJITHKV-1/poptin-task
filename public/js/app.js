@@ -2055,7 +2055,7 @@ var BaseUrl = '/poptin-task/public/';
         'message': this.message
       }); // /poptin-task/public/ruleSubmission
 
-      axios.post('/ruleSubmission', data).then(function (response) {
+      axios.post(BaseUrl + 'ruleSubmission', data).then(function (response) {
         setTimeout(function () {
           _this.$toast.success('Rule added successfully');
 
@@ -2076,7 +2076,7 @@ var BaseUrl = '/poptin-task/public/';
       var _this2 = this;
 
       // /poptin-task/public/getRules
-      axios.get('/getRules').then(function (response) {
+      axios.get(BaseUrl + 'getRules').then(function (response) {
         if (response.data.length > 0) {
           _this2.rows.push.apply(_this2.rows, response.data);
 
