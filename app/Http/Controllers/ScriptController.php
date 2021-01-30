@@ -52,11 +52,15 @@ class ScriptController extends Controller
         if(count($responses) === 1) {
 			if(in_array('hide',$responses) === false) {
 				return Response::json(['message' => $userRules->alert_message,'checked' => $userRules->checked,'checked_message' => $checkedMessage], 200);
+			} else {
+				return Response::json(['checked' => $userRules->checked, 'checked_message' => $checkedMessage], 200);
 			}
         } else {
             if(in_array('show',$responses) && in_array('hide',$responses) === false) {
                 return Response::json(['message' => $userRules->alert_message,'checked' => $userRules->checked, 'checked_message' => $checkedMessage], 200);
-            }
+            } else {
+				return Response::json(['checked' => $userRules->checked, 'checked_message' => $checkedMessage], 200);
+			}
         }
     }
 }

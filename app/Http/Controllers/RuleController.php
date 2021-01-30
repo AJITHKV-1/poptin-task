@@ -62,7 +62,12 @@ class RuleController extends Controller
         $user = User::find(Auth::user()->id);
         $user->alert_message = $request->input()[0]['message'];
         $user->checked = $request->input()[0]['checked'];
-        $user->checked_message = $request->input()[0]['checked_message'];
+		if($request->input()[0]['checked']) {
+			$user->checked_message = $request->input()[0]['checked_message'];
+		} else {
+			 $user->checked_message = '';
+		}
+       
         $user->save();
     }
 
