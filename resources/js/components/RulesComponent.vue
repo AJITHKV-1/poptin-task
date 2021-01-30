@@ -58,6 +58,7 @@
                                     <strong>Checkbox (Show alert with message when leaving a page)</strong>
                                 </label>
                             </div>
+                            <span style="color:red">* The message will only show if the page is scrollable.</span>
                         </td>
                         <td colspan="2">
                             <input type="text" class="form-control" placeholder="Message" v-model="checked_message" :required="checked ? true : false">
