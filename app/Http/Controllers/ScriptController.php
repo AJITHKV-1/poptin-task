@@ -46,7 +46,9 @@ class ScriptController extends Controller
             }
         }
         if(count($responses) === 1) {
-            return Response::json(['message' => $userRules->alert_message], 200);
+			if(in_array('hide',$responses) === false) {
+				return Response::json(['message' => $userRules->alert_message], 200);
+			}
         } else {
             if(in_array('show',$responses) && in_array('hide',$responses) === false) {
                 return Response::json(['message' => $userRules->alert_message], 200);
