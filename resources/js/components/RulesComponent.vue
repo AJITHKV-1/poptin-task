@@ -50,6 +50,19 @@
                             </button>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="3" style="vertical-align:bottom">
+                            <div style="margin-left: 15px;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" v-model="checked" checked="checked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    <strong>Checkbox (Show alert with message when leaving a page)</strong>
+                                </label>
+                            </div>
+                        </td>
+                        <td colspan="2">
+                            <input type="text" class="form-control" placeholder="Message" v-model="checked_message" :required="checked ? true : false">
+                        </td>
+                    </tr>
                    <tr>
                         <td colspan="2" style="vertical-align:bottom"><label><strong>Message (JS Alert)</strong></label></td>
                         <td colspan="3">
@@ -111,6 +124,8 @@ export default {
             message:'',
             loader: false,
             token :"",
+            checked: false,
+            checked_message : '',
         }
     },
 
@@ -127,10 +142,12 @@ export default {
         let data = [];
         data.push({
             'rows' : this.rows,
-            'message' : this.message
+            'message' : this.message,
+            'checked' : this.checked,
+            'checked_message' : this.checked_message
         });
         // /poptin-task/public/ruleSubmission
-        axios.post(BaseUrl+'ruleSubmission',data).then(response => {
+        axios.post(BaseUrl+'/ruleSubmission',data).then(response => {
         setTimeout(() => {
             this.$toast.success('Rule added successfully');
             this.loader = false;
@@ -150,10 +167,12 @@ export default {
 
     getRules() {
         // /poptin-task/public/getRules
-        axios.get(BaseUrl+'getRules').then(response => {
+        axios.get(BaseUrl+'/getRules').then(response => {
           if(response.data.length > 0) {
               this.rows.push.apply(this.rows,response.data);
               this.message = response.data[0]['user']['alert_message'];
+              this.checked = response.data[0]['user']['checked'];
+              this.checked_message = response.data[0]['user']['checked_message'];
               this.token = response.data[0]['user']['unique_token'];
           } else {
             this.addRow();

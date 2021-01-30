@@ -21,6 +21,7 @@ class ScriptController extends Controller
         $path = $request->input('path');
         $pathName = ltrim($path, '/');
         $responses = [];
+        $checkedMessage = '';
         $userRules = User::where('unique_token', '=', $request->input('token'))->with('rules')->first();
         foreach ($userRules->rules  as $key => $rule) {
             if($rule->rule_value === 'contains') {
@@ -45,13 +46,16 @@ class ScriptController extends Controller
                 }
             }
         }
+        if($userRules->checked) {
+            $checkedMessage = $userRules->checked_message;
+        }
         if(count($responses) === 1) {
 			if(in_array('hide',$responses) === false) {
-				return Response::json(['message' => $userRules->alert_message], 200);
+				return Response::json(['message' => $userRules->alert_message,'checked' => $userRules->checked,'checked_message' => $checkedMessage], 200);
 			}
         } else {
             if(in_array('show',$responses) && in_array('hide',$responses) === false) {
-                return Response::json(['message' => $userRules->alert_message], 200);
+                return Response::json(['message' => $userRules->alert_message,'checked' => $userRules->checked, 'checked_message' => $checkedMessage], 200);
             }
         }
     }

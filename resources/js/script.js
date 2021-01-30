@@ -16,6 +16,14 @@ if (token) {
                 if (data) {
                     var message = data.message;
                     if (message) { alert(message); }
+                    if (data.checked) { 
+                            window.addEventListener('beforeunload', function (e) {
+                            // Cancel the event
+                            e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+                            // Chrome requires returnValue to be set
+                            e.returnValue = '';
+                        }); 
+                    }
                 }
             }
         } catch (error) {
@@ -44,3 +52,12 @@ function httpPostRequest(theUrl, data, callback) {
     xmlHttp.open("POST", theUrl, true);
     xmlHttp.send(data);
 }
+
+
+// function addElement(message){
+//     var elemDiv = document.createElement('div');
+//     elemDiv.style.cssText = 'width:100%;height:10%;background:rgb(192,192,192);';
+//     elemDiv.innerHTML = 'Added element with some data'; 
+//     window.document.body.insertBefore(elemDiv, window.document.body.firstChild);
+//     // document.body.appendChild(elemDiv); // appends last of that element
+// }
