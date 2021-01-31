@@ -3,7 +3,7 @@ var webUrl = "http://ec2-3-83-46-88.compute-1.amazonaws.com/poptin-task/public/c
 // var webUrl = "http://127.0.0.1:8000/checkRules"; // for test in local
 
 const token = getTokenFromScript("token",document.currentScript.getAttribute("src"));
-
+localStorage.setItem('alerted',0);
 if (token) {
     var path = window.location.pathname;
     const params = new FormData();
@@ -18,13 +18,20 @@ if (token) {
                     if (message) { alert(message); }
                     if (data.checked) { 
                         window.addEventListener("scroll", function() {
+							var alerted = localStorage.getItem('alerted');
                             const scrollable = document.documentElement.scrollHeight - window.innerHeight;
                             const scrolled = window.scrollY;
                             const halfwayScrollable = scrollable/2;
                             if(scrolled > halfwayScrollable) {
-                                alert(data.checked_message);
+                                if (alerted == 0) {
+                                    alert(data.checked_message);
+                                    localStorage.setItem('alerted',1);
+                                }
                             }
-                        }, false);
+                            if(scrolled == 0) {
+                                localStorage.setItem('alerted',0);
+                            }
+                        });
                     }
                 }
             }
